@@ -1,34 +1,57 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Sparkles, CheckCircle2, Users, Zap, Award, ArrowRight } from "lucide-react";
+import { Sparkles, CheckCircle2, Users, Zap, Award, ArrowRight, Moon, Sun, Globe } from "lucide-react";
 import { Link } from "wouter";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { useTheme } from "@/contexts/ThemeContext";
 
 export default function Home() {
+  const { language, setLanguage, t, isRTL } = useLanguage();
+  const { theme, toggleTheme } = useTheme();
+
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background" dir={isRTL ? "rtl" : "ltr"}>
       {/* Navigation */}
       <nav className="border-b border-border bg-background/95 backdrop-blur sticky top-0 z-50">
         <div className="container py-4 flex items-center justify-between">
           <Link href="/">
             <div className="flex items-center gap-2 cursor-pointer">
-              <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-                <Sparkles className="w-5 h-5 text-primary-foreground" />
-              </div>
-              <span className="text-xl font-bold text-foreground">NASAYIM CLEAN</span>
+              <img src="/logo.png" alt="NASAYIM CLEAN" className="w-10 h-10" />
+              <span className="text-xl font-bold text-foreground">NASAYIM</span>
             </div>
           </Link>
           <div className="hidden md:flex items-center gap-8">
             <Link href="/services">
-              <a className="text-foreground hover:text-primary transition-colors">Services</a>
+              <a className="text-foreground hover:text-primary transition-colors">{t("nav.services")}</a>
             </Link>
             <Link href="/about">
-              <a className="text-foreground hover:text-primary transition-colors">About</a>
+              <a className="text-foreground hover:text-primary transition-colors">{t("nav.about")}</a>
             </Link>
             <Link href="/contact">
-              <a className="text-foreground hover:text-primary transition-colors">Contact</a>
+              <a className="text-foreground hover:text-primary transition-colors">{t("nav.contact")}</a>
             </Link>
+          </div>
+          <div className="flex items-center gap-3">
+            <button
+              onClick={toggleTheme}
+              className="p-2 hover:bg-muted rounded-lg transition-colors"
+              title={theme === "dark" ? "Light mode" : "Dark mode"}
+            >
+              {theme === "dark" ? (
+                <Sun className="w-5 h-5 text-foreground" />
+              ) : (
+                <Moon className="w-5 h-5 text-foreground" />
+              )}
+            </button>
+            <button
+              onClick={() => setLanguage(language === "en" ? "ar" : "en")}
+              className="p-2 hover:bg-muted rounded-lg transition-colors flex items-center gap-1"
+            >
+              <Globe className="w-5 h-5 text-foreground" />
+              <span className="text-sm font-medium text-foreground">{language === "en" ? "العربية" : "English"}</span>
+            </button>
             <Link href="/login">
-              <Button>Staff Login</Button>
+              <Button>{t("nav.login")}</Button>
             </Link>
           </div>
         </div>
@@ -39,25 +62,25 @@ export default function Home() {
         <div className="container text-center space-y-8">
           <div className="space-y-4">
             <h1 className="text-4xl md:text-6xl font-bold text-foreground">
-              Your Trusted Partner for
+              {t("home.hero.title")}
             </h1>
             <h2 className="text-4xl md:text-6xl font-bold text-primary">
-              Cleaning & Pest Control
+              {t("home.hero.subtitle")}
             </h2>
           </div>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Professional cleaning and pest control services that keep your spaces fresh, clean, and pest-free. Serving businesses and homes with excellence.
+            {t("home.hero.description")}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
             <Link href="/contact">
               <Button size="lg" className="gap-2">
-                Book Service Now
+                {t("home.cta.book")}
                 <ArrowRight className="w-4 h-4" />
               </Button>
             </Link>
             <Link href="/services">
               <Button size="lg" variant="outline">
-                View Services
+                {t("home.cta.services")}
               </Button>
             </Link>
           </div>
@@ -68,9 +91,9 @@ export default function Home() {
       <section className="py-20 bg-background">
         <div className="container space-y-12">
           <div className="text-center space-y-4">
-            <h2 className="text-3xl font-bold text-foreground">Our Services</h2>
+            <h2 className="text-3xl font-bold text-foreground">{t("home.services.title")}</h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              Comprehensive cleaning and pest control solutions tailored to your needs
+              {t("home.services.description")}
             </p>
           </div>
 
@@ -78,18 +101,24 @@ export default function Home() {
             {[
               {
                 icon: Sparkles,
-                title: "Professional Cleaning",
-                description: "Office, residential, and commercial cleaning services with attention to detail"
+                title: language === "en" ? "Professional Cleaning" : "التنظيف الاحترافي",
+                description: language === "en" 
+                  ? "Office, residential, and commercial cleaning services with attention to detail"
+                  : "خدمات تنظيف المكاتب والمنازل والمنشآت التجارية بعناية فائقة"
               },
               {
                 icon: Zap,
-                title: "Pest Control",
-                description: "Effective pest prevention and elimination for a safe, healthy environment"
+                title: language === "en" ? "Pest Control" : "مكافحة الآفات",
+                description: language === "en"
+                  ? "Effective pest prevention and elimination for a safe, healthy environment"
+                  : "منع فعال للآفات والقضاء عليها لبيئة آمنة وصحية"
               },
               {
                 icon: Award,
-                title: "Sanitization",
-                description: "Deep cleaning and disinfection services for maximum hygiene"
+                title: language === "en" ? "Sanitization" : "التعقيم والتطهير",
+                description: language === "en"
+                  ? "Deep cleaning and disinfection services for maximum hygiene"
+                  : "خدمات التنظيف العميق والتعقيم لأقصى درجات النظافة"
               }
             ].map((service, idx) => (
               <Card key={idx} className="border-border hover:shadow-lg transition-shadow">
@@ -107,7 +136,7 @@ export default function Home() {
           <div className="text-center pt-8">
             <Link href="/services">
               <Button variant="outline" size="lg">
-                Explore All Services
+                {language === "en" ? "Explore All Services" : "اكتشف جميع الخدمات"}
               </Button>
             </Link>
           </div>
@@ -118,20 +147,20 @@ export default function Home() {
       <section className="py-20 bg-muted/50">
         <div className="container space-y-12">
           <div className="text-center space-y-4">
-            <h2 className="text-3xl font-bold text-foreground">Why Choose NASAYIM CLEAN</h2>
+            <h2 className="text-3xl font-bold text-foreground">{t("home.why.title")}</h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              We're committed to delivering exceptional service quality
+              {t("home.why.description")}
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-8">
             {[
-              "Professional and trained technicians",
-              "Eco-friendly cleaning solutions",
-              "24/7 customer support",
-              "Competitive pricing",
-              "Fast and reliable service",
-              "Satisfaction guaranteed"
+              language === "en" ? "Professional and trained technicians" : "فنيون محترفون ومدربون",
+              language === "en" ? "Eco-friendly cleaning solutions" : "حلول تنظيف صديقة للبيئة",
+              language === "en" ? "24/7 customer support" : "دعم العملاء على مدار الساعة",
+              language === "en" ? "Competitive pricing" : "أسعار تنافسية",
+              language === "en" ? "Fast and reliable service" : "خدمة سريعة وموثوقة",
+              language === "en" ? "Satisfaction guaranteed" : "الرضا مضمون"
             ].map((reason, idx) => (
               <div key={idx} className="flex items-start gap-4">
                 <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
@@ -146,20 +175,22 @@ export default function Home() {
       <section className="py-20 bg-primary text-primary-foreground">
         <div className="container text-center space-y-8">
           <div className="space-y-4">
-            <h2 className="text-3xl font-bold">Ready to Get Started?</h2>
+            <h2 className="text-3xl font-bold">{t("home.cta.ready")}</h2>
             <p className="text-lg opacity-90 max-w-2xl mx-auto">
-              Contact us today for a free quote and let us help keep your space clean and pest-free
+              {language === "en"
+                ? "Contact us today for a free quote and let us help keep your space clean and pest-free"
+                : "تواصل معنا اليوم للحصول على عرض سعر مجاني واترك لنا مسؤولية الحفاظ على نظافة مساحتك"}
             </p>
           </div>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/contact">
               <Button size="lg" variant="secondary">
-                Get Free Quote
+                {t("home.cta.quote")}
               </Button>
             </Link>
             <a href="https://wa.me/971501234567" target="_blank" rel="noopener noreferrer">
               <Button size="lg" variant="outline" className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground/10">
-                WhatsApp Us
+                {t("home.cta.whatsapp")}
               </Button>
             </a>
           </div>
@@ -172,34 +203,44 @@ export default function Home() {
           <div className="grid md:grid-cols-4 gap-8 mb-8">
             <div>
               <h3 className="font-bold text-foreground mb-4">NASAYIM CLEAN</h3>
-              <p className="text-sm text-muted-foreground">Professional cleaning and pest control services</p>
+              <p className="text-sm text-muted-foreground">
+                {language === "en"
+                  ? "Professional cleaning and pest control services"
+                  : "خدمات التنظيف الاحترافية ومكافحة الآفات"}
+              </p>
             </div>
             <div>
-              <h4 className="font-semibold text-foreground mb-4">Services</h4>
+              <h4 className="font-semibold text-foreground mb-4">
+                {language === "en" ? "Services" : "الخدمات"}
+              </h4>
               <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><Link href="/services"><a className="hover:text-primary">Cleaning</a></Link></li>
-                <li><Link href="/services"><a className="hover:text-primary">Pest Control</a></Link></li>
-                <li><Link href="/services"><a className="hover:text-primary">Sanitization</a></Link></li>
+                <li><Link href="/services"><a className="hover:text-primary">{language === "en" ? "Cleaning" : "التنظيف"}</a></Link></li>
+                <li><Link href="/services"><a className="hover:text-primary">{language === "en" ? "Pest Control" : "مكافحة الآفات"}</a></Link></li>
+                <li><Link href="/services"><a className="hover:text-primary">{language === "en" ? "Sanitization" : "التعقيم"}</a></Link></li>
               </ul>
             </div>
             <div>
-              <h4 className="font-semibold text-foreground mb-4">Company</h4>
+              <h4 className="font-semibold text-foreground mb-4">
+                {language === "en" ? "Company" : "الشركة"}
+              </h4>
               <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><Link href="/about"><a className="hover:text-primary">About Us</a></Link></li>
-                <li><Link href="/contact"><a className="hover:text-primary">Contact</a></Link></li>
+                <li><Link href="/about"><a className="hover:text-primary">{t("nav.about")}</a></Link></li>
+                <li><Link href="/contact"><a className="hover:text-primary">{t("nav.contact")}</a></Link></li>
               </ul>
             </div>
             <div>
-              <h4 className="font-semibold text-foreground mb-4">Contact</h4>
+              <h4 className="font-semibold text-foreground mb-4">
+                {language === "en" ? "Contact" : "التواصل"}
+              </h4>
               <ul className="space-y-2 text-sm text-muted-foreground">
-                <li>Email: info@nasayim.com</li>
-                <li>Phone: +971 50 123 4567</li>
-                <li>Dubai, UAE</li>
+                <li>{language === "en" ? "Email: info@nasayim.com" : "البريد: info@nasayim.com"}</li>
+                <li>{language === "en" ? "Phone: +971 50 123 4567" : "الهاتف: +971 50 123 4567"}</li>
+                <li>{language === "en" ? "Dubai, UAE" : "دبي، الإمارات"}</li>
               </ul>
             </div>
           </div>
           <div className="border-t border-border pt-8 text-center text-sm text-muted-foreground">
-            <p>&copy; 2026 NASAYIM CLEAN. All rights reserved.</p>
+            <p>{t("footer.copyright")}</p>
           </div>
         </div>
       </footer>
