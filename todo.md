@@ -98,3 +98,14 @@
 - [ ] Integrate Stripe payment gateway
 - [ ] Create shopping cart functionality
 - [ ] Add order tracking feature
+
+
+## Phase 4 - Shopping Cart System
+- [x] Create Cart Context for state management
+- [x] Build Cart page with item management
+- [x] Create Checkout page with summary
+- [x] Add Cart icon to navigation with item count badge
+- [x] Implement add/remove/update quantity functionality
+- [x] Add persistent cart storage (localStorage)
+- [x] Create order summary with pricing breakdown
+- [x] Add coupon/discount code support

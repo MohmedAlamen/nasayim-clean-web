@@ -1,10 +1,13 @@
 import { Home, ShoppingCart, Package, User } from "lucide-react";
 import { Link, useLocation } from "wouter";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useCart } from "@/contexts/CartContext";
 
 export default function BottomNavigation() {
   const [location] = useLocation();
   const { language, isRTL } = useLanguage();
+  const { getItemCount } = useCart();
+  const itemCount = getItemCount();
 
   const navItems = [
     { 
@@ -20,10 +23,11 @@ export default function BottomNavigation() {
       labelAr: "الخدمات" 
     },
     { 
-      path: "/orders", 
+      path: "/cart", 
       icon: Package, 
-      labelEn: "Orders", 
-      labelAr: "الطلبات" 
+      labelEn: "Cart", 
+      labelAr: "السلة",
+      badge: itemCount > 0 ? itemCount : undefined
     },
     { 
       path: "/account", 
@@ -45,12 +49,17 @@ export default function BottomNavigation() {
           
           return (
             <Link key={item.path} href={item.path}>
-              <a className={`flex flex-col items-center justify-center gap-1 py-2 px-4 rounded-lg transition-all duration-200 ${
+              <a className={`flex flex-col items-center justify-center gap-1 py-2 px-4 rounded-lg transition-all duration-200 relative ${
                 isActive
                   ? "text-primary bg-primary/10"
                   : "text-muted-foreground hover:text-foreground"
               }`}>
                 <Icon className="w-6 h-6" />
+                {item.badge && (
+                  <span className="absolute top-0 right-0 bg-red-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
+                    {item.badge}
+                  </span>
+                )}
                 <span className="text-xs font-medium">
                   {language === "en" ? item.labelEn : item.labelAr}
                 </span>

@@ -1,15 +1,34 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Sparkles, Zap, Award, CheckCircle2, ArrowRight } from "lucide-react";
+import { Sparkles, Zap, Award, CheckCircle2, ArrowRight, ShoppingCart } from "lucide-react";
 import { Link } from "wouter";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useCart } from "@/contexts/CartContext";
+import { toast } from "sonner";
+import { realServices } from "@/data/services";
 
 export default function Services() {
   const { language, t, isRTL } = useLanguage();
+  const { addItem } = useCart();
 
-  const services = [
+  const handleAddToCart = (service: typeof realServices[0]) => {
+    addItem({
+      id: service.id,
+      nameEn: service.nameEn,
+      nameAr: service.nameAr,
+      price: service.price,
+      duration: service.duration,
+      category: service.category,
+    });
+    toast.success(
+      language === "en"
+        ? "Service added to cart!"
+        : "تم إضافة الخدمة إلى السلة!"
+    );
+  };
+
+  const serviceCategories = [
     {
-      id: 1,
       icon: Sparkles,
       titleEn: "Professional Cleaning",
       titleAr: "التنظيف الاحترافي",
@@ -24,10 +43,8 @@ export default function Services() {
         { en: "Floor polishing and waxing", ar: "تلميع الأرضيات والشمع" },
         { en: "Eco-friendly products", ar: "منتجات صديقة للبيئة" }
       ],
-      price: { en: "Starting from AED 500", ar: "يبدأ من 500 درهم" }
     },
     {
-      id: 2,
       icon: Zap,
       titleEn: "Pest Control",
       titleAr: "مكافحة الآفات",
@@ -42,154 +59,158 @@ export default function Services() {
         { en: "Bed bug treatment", ar: "معالجة بق الفراش" },
         { en: "Safe for families and pets", ar: "آمن للعائلات والحيوانات الأليفة" }
       ],
-      price: { en: "Starting from AED 300", ar: "يبدأ من 300 درهم" }
     },
     {
-      id: 3,
       icon: Award,
       titleEn: "Sanitization & Disinfection",
       titleAr: "التعقيم والتطهير",
-      descriptionEn: "Hospital-grade sanitization for maximum hygiene",
-      descriptionAr: "تعقيم بمستوى المستشفيات لأقصى درجات النظافة",
+      descriptionEn: "Hospital-grade sanitization and disinfection services",
+      descriptionAr: "خدمات التعقيم والتطهير بمستوى المستشفيات",
       image: "/service-sanitization.jpg",
       features: [
+        { en: "General sanitization", ar: "التعقيم العام" },
         { en: "COVID-19 disinfection", ar: "تطهير كوفيد-19" },
-        { en: "Hospital-grade sanitization", ar: "تعقيم بمستوى المستشفيات" },
-        { en: "Surface disinfection", ar: "تطهير الأسطح" },
+        { en: "Post-event sanitization", ar: "التعقيم بعد الفعاليات" },
+        { en: "EPA-approved disinfectants", ar: "معقمات معتمدة من EPA" },
         { en: "Air purification", ar: "تنقية الهواء" },
-        { en: "Fogging treatment", ar: "معالجة الرش الضبابي" },
-        { en: "Certified safe products", ar: "منتجات معتمدة وآمنة" }
+        { en: "Certification provided", ar: "شهادة معتمدة" }
       ],
-      price: { en: "Starting from AED 400", ar: "يبدأ من 400 درهم" }
     }
   ];
 
   return (
-    <div className="min-h-screen bg-background" dir={isRTL ? "rtl" : "ltr"}>
-      {/* Navigation */}
-      <nav className="border-b border-border bg-background/95 backdrop-blur sticky top-0 z-50">
-        <div className="container py-4 flex items-center justify-between">
-          <Link href="/">
-            <div className="flex items-center gap-2 cursor-pointer">
-              <img src="/logo.png" alt="NASAYIM CLEAN" className="w-10 h-10" />
-              <span className="text-xl font-bold text-foreground">NASAYIM</span>
-            </div>
-          </Link>
-          <div className="hidden md:flex items-center gap-8">
-            <Link href="/services">
-              <a className="text-foreground hover:text-primary transition-colors font-semibold">{t("nav.services")}</a>
-            </Link>
-            <Link href="/about">
-              <a className="text-foreground hover:text-primary transition-colors">{t("nav.about")}</a>
-            </Link>
-            <Link href="/contact">
-              <a className="text-foreground hover:text-primary transition-colors">{t("nav.contact")}</a>
-            </Link>
-          </div>
-          <Link href="/login">
-            <Button>{t("nav.login")}</Button>
-          </Link>
-        </div>
-      </nav>
-
+    <div className="min-h-screen bg-background pb-24" dir={isRTL ? "rtl" : "ltr"}>
       {/* Header */}
-      <section className="py-16 bg-gradient-to-b from-primary/5 to-background">
-        <div className="container text-center space-y-4">
-          <h1 className="text-4xl md:text-5xl font-bold text-foreground">
-            {language === "en" ? "Our Services" : "خدماتنا"}
+      <div className="bg-gradient-to-b from-primary/5 to-background py-12">
+        <div className="container">
+          <h1 className="text-4xl font-bold text-foreground mb-4">
+            {t("services.title")}
           </h1>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            {language === "en"
-              ? "Comprehensive cleaning and pest control solutions tailored to your needs"
-              : "حلول شاملة للتنظيف ومكافحة الآفات مصممة حسب احتياجاتك"}
+          <p className="text-lg text-muted-foreground max-w-2xl">
+            {t("services.description")}
           </p>
         </div>
-      </section>
+      </div>
 
-      {/* Services */}
-      <section className="py-20 bg-background">
-        <div className="container space-y-16">
-          {services.map((service) => (
-            <div key={service.id} className="grid md:grid-cols-2 gap-8 items-center">
-              <div className={isRTL ? "md:order-2" : ""}>
-                <img
-                  src={service.image}
-                  alt={language === "en" ? service.titleEn : service.titleAr}
-                  className="rounded-lg shadow-lg w-full h-96 object-cover"
-                />
-              </div>
-              <div className={isRTL ? "md:order-1" : ""}>
-                <div className="space-y-6">
-                  <div className="space-y-2">
-                    <h2 className="text-3xl font-bold text-foreground">
-                      {language === "en" ? service.titleEn : service.titleAr}
-                    </h2>
-                    <p className="text-lg text-muted-foreground">
-                      {language === "en" ? service.descriptionEn : service.descriptionAr}
-                    </p>
-                  </div>
+      {/* Service Categories */}
+      <div className="container py-12 space-y-16">
+        {serviceCategories.map((category, idx) => {
+          const Icon = category.icon;
+          const categoryServices = realServices.filter(s => {
+            if (idx === 0) return s.category === "cleaning";
+            if (idx === 1) return s.category === "pest";
+            return s.category === "sanitization";
+          });
 
-                  <div className="space-y-3">
-                    {service.features.map((feature, idx) => (
-                      <div key={idx} className="flex items-start gap-3">
-                        <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0 mt-1" />
-                        <span className="text-foreground">
-                          {language === "en" ? feature.en : feature.ar}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-
-                  <div className="space-y-4">
-                    <p className="text-lg font-semibold text-primary">
-                      {language === "en" ? service.price.en : service.price.ar}
-                    </p>
-                    <Link href="/contact">
-                      <Button size="lg" className="gap-2">
-                        {language === "en" ? "Get Quote" : "احصل على عرض سعر"}
-                        <ArrowRight className="w-4 h-4" />
-                      </Button>
-                    </Link>
-                  </div>
+          return (
+            <div key={idx} className="space-y-8">
+              {/* Category Header */}
+              <div className="flex items-start gap-4">
+                <div className="p-3 bg-primary/10 rounded-lg">
+                  <Icon className="w-8 h-8 text-primary" />
+                </div>
+                <div>
+                  <h2 className="text-3xl font-bold text-foreground">
+                    {language === "en" ? category.titleEn : category.titleAr}
+                  </h2>
+                  <p className="text-muted-foreground mt-2">
+                    {language === "en" ? category.descriptionEn : category.descriptionAr}
+                  </p>
                 </div>
               </div>
+
+              {/* Category Features */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {category.features.map((feature, i) => (
+                  <div key={i} className="flex items-start gap-3">
+                    <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+                    <span className="text-foreground">
+                      {language === "en" ? feature.en : feature.ar}
+                    </span>
+                  </div>
+                ))}
+              </div>
+
+              {/* Services Grid */}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {categoryServices.map((service) => (
+                  <Card key={service.id} className="hover:shadow-lg transition-all overflow-hidden">
+                    <CardHeader className="pb-3">
+                      <CardTitle className="text-lg">
+                        {language === "en" ? service.nameEn : service.nameAr}
+                      </CardTitle>
+                      <CardDescription>
+                        {language === "en" ? service.descriptionEn : service.descriptionAr}
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent className="space-y-4">
+                      {/* Features */}
+                      <div className="space-y-2">
+                        {service.features.slice(0, 3).map((feature, i) => (
+                          <div key={i} className="flex items-center gap-2 text-sm">
+                            <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0" />
+                            <span className="text-muted-foreground">
+                              {language === "en" ? feature.en : feature.ar}
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+
+                      {/* Pricing and Duration */}
+                      <div className="border-t pt-4 space-y-3">
+                        <div className="flex justify-between items-center">
+                          <span className="text-muted-foreground">
+                            {language === "en" ? "Price:" : "السعر:"}
+                          </span>
+                          <span className="text-2xl font-bold text-primary">
+                            {service.price} AED
+                          </span>
+                        </div>
+                        <div className="flex justify-between items-center text-sm">
+                          <span className="text-muted-foreground">
+                            {language === "en" ? "Duration:" : "المدة:"}
+                          </span>
+                          <span className="font-medium">{service.duration}</span>
+                        </div>
+                      </div>
+
+                      {/* Add to Cart Button */}
+                      <Button
+                        onClick={() => handleAddToCart(service)}
+                        className="w-full"
+                        size="lg"
+                      >
+                        <ShoppingCart className="w-4 h-4 mr-2" />
+                        {language === "en" ? "Add to Cart" : "أضف إلى السلة"}
+                      </Button>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
             </div>
-          ))}
-        </div>
-      </section>
+          );
+        })}
+      </div>
 
       {/* CTA Section */}
-      <section className="py-20 bg-primary text-primary-foreground">
-        <div className="container text-center space-y-8">
-          <h2 className="text-3xl font-bold">
-            {language === "en" ? "Ready to Get Started?" : "هل أنت مستعد للبدء؟"}
+      <div className="bg-gradient-to-r from-primary to-primary/80 text-white py-12">
+        <div className="container text-center">
+          <h2 className="text-3xl font-bold mb-4">
+            {language === "en" ? "Ready to Book?" : "هل أنت مستعد للحجز؟"}
           </h2>
-          <p className="text-lg opacity-90 max-w-2xl mx-auto">
+          <p className="text-white/90 mb-6 max-w-2xl mx-auto">
             {language === "en"
-              ? "Contact us today for a free quote and let us help keep your space clean and pest-free"
-              : "تواصل معنا اليوم للحصول على عرض سعر مجاني"}
+              ? "Add services to your cart and proceed to checkout for a seamless booking experience."
+              : "أضف الخدمات إلى سلتك وانتقل إلى الدفع للحصول على تجربة حجز سلسة."}
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/contact">
-              <Button size="lg" variant="secondary">
-                {language === "en" ? "Book Now" : "احجز الآن"}
-              </Button>
-            </Link>
-            <a href="https://wa.me/971501234567" target="_blank" rel="noopener noreferrer">
-              <Button size="lg" variant="outline" className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground/10">
-                {language === "en" ? "WhatsApp Us" : "تواصل عبر واتس"}
-              </Button>
-            </a>
-          </div>
+          <Link href="/cart">
+            <Button size="lg" variant="secondary">
+              {language === "en" ? "View Cart" : "عرض السلة"}
+              <ArrowRight className="w-4 h-4 ml-2" />
+            </Button>
+          </Link>
         </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="bg-foreground/5 border-t border-border py-12">
-        <div className="container text-center text-sm text-muted-foreground">
-          <p>{t("footer.copyright")}</p>
-        </div>
-      </footer>
+      </div>
     </div>
   );
 }
