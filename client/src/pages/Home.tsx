@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import React from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Sparkles, CheckCircle2, Users, Zap, Award, ArrowRight, Moon, Sun, Globe } from "lucide-react";
 import { Link } from "wouter";
@@ -8,6 +9,12 @@ import { useTheme } from "@/contexts/ThemeContext";
 export default function Home() {
   const { language, setLanguage, t, isRTL } = useLanguage();
   const { theme, toggleTheme } = useTheme();
+
+  // SEO Meta Tags
+  React.useEffect(() => {
+    document.title = language === "en" ? "NASAYIM CLEAN - Professional Cleaning & Pest Control Services in Riyadh" : "نسائم كلين - خدمات التنظيف ومكافحة الآفات الاحترافية في الرياض";
+    document.querySelector('meta[name="description"]')?.setAttribute("content", language === "en" ? "Professional cleaning and pest control services in Riyadh. Trusted by businesses and homes. Book your service today!" : "خدمات التنظيف ومكافحة الآفات الاحترافية في الرياض. موثوقة من قبل الشركات والمنازل. احجز خدمتك اليوم!");
+  }, [language]);
 
   return (
     <div className="min-h-screen bg-background" dir={isRTL ? "rtl" : "ltr"}>

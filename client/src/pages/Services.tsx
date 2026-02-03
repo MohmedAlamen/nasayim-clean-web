@@ -34,7 +34,7 @@ export default function Services() {
       titleAr: "التنظيف الاحترافي",
       descriptionEn: "Comprehensive cleaning services for offices, homes, and commercial spaces",
       descriptionAr: "خدمات تنظيف شاملة للمكاتب والمنازل والمنشآت التجارية",
-      image: "/service-cleaning.jpg",
+      image: "https://private-us-east-1.manuscdn.com/sessionFile/Vp0ePiodyzYRyUBygjPQpp/sandbox/NpGsqptyJBQBeNqZfuOihu-img-1_1770092952000_na1fn_cHJvZmVzc2lvbmFsLW9mZmljZS1jbGVhbmluZw.jpg?x-oss-process=image/resize,w_1920,h_1920/format,webp/quality,q_80&Expires=1798761600&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvVnAwZVBpb2R5ellSeVVCeWdqUFFwcC9zYW5kYm94L05wR3NxcHR5SkJRQmVOcVpmdU9paHUtaW1nLTFfMTc3MDA5Mjk1MjAwMF9uYTFmbl9jSEp2Wm1WemMybHZibUZzTFc5bVptbGpaUzFqYkdWaGJtbHVady5qcGc~eC1vc3MtcHJvY2Vzcz1pbWFnZS9yZXNpemUsd18xOTIwLGhfMTkyMC9mb3JtYXQsd2VicC9xdWFsaXR5LHFfODAiLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE3OTg3NjE2MDB9fX1dfQ__&Key-Pair-Id=K2HSFNDJXOU9YS&Signature=PBc9e1J25RrLADOZbpQelDHYmn~UC7ZDrSs1QT5WVqLpTpZ-tjgYkrepUblct8NhbgXj6wxPZPuHE8kp34fJDehEDeHlbB4nUFXkxqvOyypiWa93KqUtD81y2924WbnDeE9mQNOQXi8hCeAg9U-vQdVGo-xLVpnwb~5pnbqAU9idNVrRcmhZM1129bBioIMWAYbz~XKluKft8UPMu5MY4co5d1tn35MgxiqDNVtf9A5tM4mMxw33f1YvcABYnJuhLynl3d8VLMwQHbW3~TlxHwY1HpYsjVOVvtJ3tKMeosJnt8SvrSnEZXhpqzDzqjkfR5nzNlUfwa9~12AYKUAoyg__",
       features: [
         { en: "Daily office cleaning", ar: "التنظيف اليومي للمكاتب" },
         { en: "Deep cleaning services", ar: "خدمات التنظيف العميق" },
@@ -50,7 +50,7 @@ export default function Services() {
       titleAr: "مكافحة الآفات",
       descriptionEn: "Safe and effective pest prevention and elimination",
       descriptionAr: "منع فعال وآمن للآفات والقضاء عليها",
-      image: "/service-pest-control.jpg",
+      image: "https://private-us-east-1.manuscdn.com/sessionFile/Vp0ePiodyzYRyUBygjPQpp/sandbox/NpGsqptyJBQBeNqZfuOihu-img-2_1770092951000_na1fn_cGVzdC1jb250cm9sLXNlcnZpY2U.jpg?x-oss-process=image/resize,w_1920,h_1920/format,webp/quality,q_80&Expires=1798761600&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvVnAwZVBpb2R5ellSeVVCeWdqUFFwcC9zYW5kYm94L05wR3NxcHR5SkJRQmVOcVpmdU9paHUtaW1nLTJfMTc3MDA5Mjk1MTAwMF9uYTFmbl9jR1Z6ZEMxamIyNTBjbTlzTFhObGNuWnBZMlUuanBnP3gtb3NzLXByb2Nlc3M9aW1hZ2UvcmVzaXplLHdfMTkyMCxoXzE5MjAvZm9ybWF0LHdlYnAvcXVhbGl0eSxxXzgwIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxNzk4NzYxNjAwfX19XX0_&Key-Pair-Id=K2HSFNDJXOU9YS&Signature=WcqdMhJMBPUGB-QxmMbRFAWFZA5O9~LMy8txEjS2W1bHcYg9NKuK6IwriPogDSCvX8~5nsrnXSSq-ZWlM4AfYieA7Vbxi1EZDhd7oZdXxJMNDQPcA5rcY~b-POtp~YSqxgPiXNwaxRwvgzlKwTOVvNzryqRwXkhKmAOZMXs65NutmHkuyQf9jK14Ha34YIkUlZ1W1YloYEp0TR8jenqAVDF8uiE4w~PUFFQIRllrt-WgRYpskWkRYLw-GoZHfUM~GixCfKEeHTfiMxxcrVXfKA08Ks~amIhXL8J2oVYvfxBk9ac962Zhhrwe7q-5kr23INbfgPMyzOe0wPIIh70zew__",
       features: [
         { en: "Cockroach control", ar: "مكافحة الصراصير" },
         { en: "Rodent elimination", ar: "القضاء على القوارض" },
@@ -66,7 +66,7 @@ export default function Services() {
       titleAr: "التعقيم والتطهير",
       descriptionEn: "Hospital-grade sanitization and disinfection services",
       descriptionAr: "خدمات التعقيم والتطهير بمستوى المستشفيات",
-      image: "/service-sanitization.jpg",
+      image: "https://private-us-east-1.manuscdn.com/sessionFile/Vp0ePiodyzYRyUBygjPQpp/sandbox/NpGsqptyJBQBeNqZfuOihu-img-3_1770092958000_na1fn_c2FuaXRpemF0aW9uLXNlcnZpY2U.jpg?x-oss-process=image/resize,w_1920,h_1920/format,webp/quality,q_80&Expires=1798761600&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvVnAwZVBpb2R5ellSeVVCeWdqUFFwcC9zYW5kYm94L05wR3NxcHR5SkJRQmVOcVpmdU9paHUtaW1nLTNfMTc3MDA5Mjk1ODAwMF9uYTFmbl9jMkZ1YVhScGVtRjBhVzl1TFhObGNuWnBZMlUuanBnP3gtb3NzLXByb2Nlc3M9aW1hZ2UvcmVzaXplLHdfMTkyMCxoXzE5MjAvZm9ybWF0LHdlYnAvcXVhbGl0eSxxXzgwIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxNzk4NzYxNjAwfX19XX0_&Key-Pair-Id=K2HSFNDJXOU9YS&Signature=gQJ1woHliD~IdzkS4jO~q10Iu~gI-4bfOxyfm5Kr1KWC6E9Do5rvuAR42aQU9sqV0UMRkRHLK-LwE6hKWyZClhoGuFRXbDy0K7UX7I-R9mD1Qq7ic5FyDLLu3R1Py5i2Sz5a-fKLAXC9YogUR9TrzkKuCJdfLhqKIWY-3PrXVTwsIsahKjvwrPy23K9OldYbVwQuda0iBXWwqveCXZwt7xaTaVlIDjtkoDNnLOIlPfunIVoPCJF4B1IykLKBewpBBbeBEsu~aEl3CSSB0p30hEbvto8HtpUIcv6p0pQ29OTXNHMWXivtugf1cE8xLuPuhEZEZAiJIyjDqsz4KCilig__",
       features: [
         { en: "General sanitization", ar: "التعقيم العام" },
         { en: "COVID-19 disinfection", ar: "تطهير كوفيد-19" },
