@@ -76,8 +76,8 @@ export default function Contact() {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <a href="tel:+971501234567" className="text-primary hover:underline">
-                  +971 50 123 4567
+                <a href="tel:+966501234567" className="text-primary hover:underline">
+                  +966 50 123 4567
                 </a>
               </CardContent>
             </Card>
@@ -104,7 +104,7 @@ export default function Contact() {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-foreground">Dubai, UAE</p>
+                <p className="text-foreground">Riyadh, Saudi Arabia</p>
               </CardContent>
             </Card>
 
@@ -123,7 +123,7 @@ export default function Contact() {
             </Card>
 
             <Button asChild className="w-full gap-2" size="lg">
-              <a href="https://wa.me/971501234567" target="_blank" rel="noopener noreferrer">
+              <a href="https://wa.me/966501234567" target="_blank" rel="noopener noreferrer">
                 WhatsApp Us
               </a>
             </Button>

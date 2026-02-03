@@ -109,3 +109,16 @@
 - [x] Add persistent cart storage (localStorage)
 - [x] Create order summary with pricing breakdown
 - [x] Add coupon/discount code support
+
+
+## Phase 5 - Saudi Arabia Localization (Riyadh)
+- [x] Change currency from AED to SAR (Saudi Riyal)
+- [x] Update all prices to SAR
+- [x] Change default location to Riyadh
+- [x] Update phone number format to Saudi (+966)
+- [x] Update contact information and address examples
+- [x] Add WhatsApp number for Saudi Arabia
+- [x] Update company information and location details
+- [x] Adjust tax rate to Saudi VAT (15%)
+- [x] Update service descriptions for Saudi market
+- [x] Change delivery addresses to Riyadh locations

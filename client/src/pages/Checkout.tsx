@@ -15,7 +15,7 @@ export default function Checkout() {
   const [isProcessing, setIsProcessing] = useState(false);
 
   const subtotal = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
-  const tax = (getTotal() * 0.05);
+  const tax = (getTotal() * 0.15);
   const total = getTotal() + tax;
 
   const handleSubmit = async (e: React.FormEvent) => {

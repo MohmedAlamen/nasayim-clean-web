@@ -12,7 +12,7 @@ export default function Cart() {
 
   const subtotal = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
   const discount = (subtotal * discountPercent) / 100;
-  const tax = (getTotal() * 0.05);
+  const tax = (getTotal() * 0.15);
   const total = getTotal() + tax;
 
   const handleApplyCoupon = (e: React.FormEvent<HTMLFormElement>) => {
