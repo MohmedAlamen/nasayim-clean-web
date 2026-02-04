@@ -25,4 +25,34 @@ export const users = mysqlTable("users", {
 export type User = typeof users.$inferSelect;
 export type InsertUser = typeof users.$inferInsert;
 
-// TODO: Add your tables here
+/**
+ * Chat conversations table for storing customer support conversations
+ */
+export const conversations = mysqlTable("conversations", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId").notNull(),
+  supportAgentId: int("supportAgentId"),
+  subject: varchar("subject", { length: 255 }).notNull(),
+  status: mysqlEnum("status", ["open", "closed", "pending"]).default("open").notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type Conversation = typeof conversations.$inferSelect;
+export type InsertConversation = typeof conversations.$inferInsert;
+
+/**
+ * Chat messages table for storing individual messages
+ */
+export const chatMessages = mysqlTable("chatMessages", {
+  id: int("id").autoincrement().primaryKey(),
+  conversationId: int("conversationId").notNull(),
+  senderId: int("senderId").notNull(),
+  senderRole: mysqlEnum("senderRole", ["customer", "support", "admin"]).notNull(),
+  message: text("message").notNull(),
+  isRead: mysqlEnum("isRead", ["true", "false"]).default("false").notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type ChatMessage = typeof chatMessages.$inferSelect;
+export type InsertChatMessage = typeof chatMessages.$inferInsert;

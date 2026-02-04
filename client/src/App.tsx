@@ -6,7 +6,9 @@ import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import { LanguageProvider } from "./contexts/LanguageContext";
 import { CartProvider } from "./contexts/CartContext";
+import { ChatProvider } from "./contexts/ChatContext";
 import BottomNavigation from "./components/BottomNavigation";
+import ChatWidget from "./components/ChatWidget";
 import Home from "./pages/Home";
 import Services from "./pages/Services";
 import About from "./pages/About";
@@ -41,11 +43,14 @@ function App() {
       <ThemeProvider defaultTheme="light" switchable>
         <LanguageProvider>
           <CartProvider>
-            <TooltipProvider>
-              <Toaster />
-              <Router />
-              <BottomNavigation />
-            </TooltipProvider>
+            <ChatProvider>
+              <TooltipProvider>
+                <Toaster />
+                <Router />
+                <BottomNavigation />
+                <ChatWidget />
+              </TooltipProvider>
+            </ChatProvider>
           </CartProvider>
         </LanguageProvider>
       </ThemeProvider>
