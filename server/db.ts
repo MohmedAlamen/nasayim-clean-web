@@ -1,6 +1,6 @@
-import { eq } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
-import { InsertUser, users } from "../drizzle/schema";
+import { eq, and, gte, lte, desc } from "drizzle-orm";
+import { InsertUser, users, ratings, InsertRating, promotions, InsertPromotion, subscriptionPlans, customerSubscriptions, InsertCustomerSubscription, technicianTracking, InsertTechnicianTracking } from "../drizzle/schema";
 import { ENV } from './_core/env';
 
 let _db: ReturnType<typeof drizzle> | null = null;
@@ -89,4 +89,45 @@ export async function getUserByOpenId(openId: string) {
   return result.length > 0 ? result[0] : undefined;
 }
 
-// TODO: add feature queries here as your schema grows.
+// Ratings queries
+export async function createRating(rating: InsertRating) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+  return db.insert(ratings).values(rating);
+}
+
+export async function getRatingsByOrderId(orderId: number) {
+  const db = await getDb();
+  if (!db) return [];
+  return db.select().from(ratings).where(eq(ratings.orderId, orderId));
+}
+
+// Promotions queries
+export async function createPromotion(promo: InsertPromotion) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+  return db.insert(promotions).values(promo);
+}
+
+export async function getPromotionByCode(code: string) {
+  const db = await getDb();
+  if (!db) return null;
+  const result = await db.select().from(promotions).where(eq(promotions.code, code)).limit(1);
+  return result.length > 0 ? result[0] : null;
+}
+
+// Subscription queries
+export async function getSubscriptionPlans() {
+  const db = await getDb();
+  if (!db) return [];
+  return db.select().from(subscriptionPlans).where(eq(subscriptionPlans.isActive, "true"));
+}
+
+// Technician tracking queries
+export async function updateTechnicianLocation(tracking: InsertTechnicianTracking) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+  return db.insert(technicianTracking).values(tracking);
+}
+
+// TODO: add more feature queries as your schema grows.
